@@ -1,0 +1,25 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+random_state = 777
+
+raw_data = pd.read_excel('data/readability/raw_data.xlsx')
+groups = raw_data.groupby("Grade")
+grades = list(groups.groups.keys())
+
+train_df = pd.DataFrame(columns=["Word", "Grade", "Filename", "Text", "num_sent"])
+test_df = pd.DataFrame(columns=["Word", "Grade", "Filename", "Text", "num_sent"])
+validation_df = pd.DataFrame(columns=["Word", "Grade", "Filename", "Text", "num_sent"])
+
+for grade in grades:
+    grade_df = groups.get_group(grade)
+    train_split, test_split = train_test_split(grade_df, test_size=0.3, random_state=random_state)
+    test_split, validation_split = train_test_split(test_split, test_size=0.33, random_state=random_state)
+
+    train_df = pd.concat([train_df, train_split], axis=0)
+    test_df = pd.concat([test_df, test_split], axis=0)
+    validation_df = pd.concat([validation_df, validation_split], axis=0)
+
+train_df.to_csv('data/readability/train.csv', index=False, sep='\t')
+test_df.to_csv('data/readability/test.csv', index=False, sep='\t')
+validation_df.to_csv('data/readability/validation.csv', index=False, sep='\t')

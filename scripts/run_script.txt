@@ -1,0 +1,1 @@
+python -m experiments.readability_assessement --model_name aubmindlab/bert-base-arabertv2 --model_type bert
