@@ -83,7 +83,7 @@ def run(args):
             stat_file = f'run_statistics/stats_{args.run_stat_file}'
 
         with open(stat_file, 'w') as stat_f:
-            labels = list(set(test_df['labels'].to_list()))
+            labels = list(set(test_df['labels'].to_list())).sort()
 
             wandb.sklearn.plot_confusion_matrix(test_df['labels'].to_list(), predictions, labels=labels)
             stat_f.write('\n=========================\n')
