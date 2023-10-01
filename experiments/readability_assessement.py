@@ -39,6 +39,18 @@ def get_test_data_frames():
     return train_df.head(500), test_df.head(100), validation_df.head(100)
 
 
+def get_balanced_data_frames():
+    train_df, test_df, validation_df = get_data_frames()
+    # group by labels to limit the number
+    return train_df, test_df, validation_df
+
+
+def get_categorised_data_frames():
+    train_df, test_df, validation_df = get_data_frames()
+    # use categorised dataset and sample it frac = 1
+    return train_df, test_df, validation_df
+
+
 def get_training_arguments(args):
     training_arguments = utils.arguments.get_arguments()
     training_arguments.learning_rate = args.lr
@@ -49,8 +61,12 @@ def get_training_arguments(args):
 
 
 def run(args):
-    if args.test_mode:
+    if args.run_mode == "test":
         train_df, test_df, validation_df = get_test_data_frames()
+    elif args.run_mode == "balanced":
+        train_df, test_df, validation_df = get_balanced_data_frames()
+    elif args.run_mode == "categorised":
+        train_df, test_df, validation_df = get_categorised_data_frames()
     else:
         train_df, test_df, validation_df = get_data_frames()
     training_arguments = get_training_arguments(args)
@@ -112,7 +128,7 @@ if __name__ == '__main__':
     parser.add_argument('--cuda_device', required=False, type=int, default=0, help='cuda_device')
     parser.add_argument('--run_stat_file', required=False, help='run_stat_file')
     parser.add_argument('--n_fold', required=False, type=int, default=1, help='n_fold')
-    parser.add_argument('--test_mode', required=False, type=bool, default=False, help='test_mode')
+    parser.add_argument('--run_mode', required=False, default=False, help='run_mode')
     args = parser.parse_args()
 
     run(args)

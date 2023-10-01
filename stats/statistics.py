@@ -14,6 +14,9 @@ print(groups)
 
 print("Stats for training set")
 data = pd.read_csv('data/readability/train.csv',sep='\t')
+
+print(f'training samples {len(data)}')
+
 groups = data.groupby('Grade').size()
 print(groups)
 
