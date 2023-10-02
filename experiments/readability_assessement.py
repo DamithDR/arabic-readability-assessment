@@ -13,7 +13,7 @@ from utils.label_encoder import encode, decode
 from utils.result_eval import print_information
 
 
-def get_data_frames(file_path='data/readability'):
+def get_data_frames(file_path='data/readability', mode='default'):
     sampling_random_state = 777
 
     train_df = pd.read_csv(f'{file_path}/train.csv', sep='\t')
@@ -27,6 +27,10 @@ def get_data_frames(file_path='data/readability'):
     test_df = test_df.sample(frac=1, random_state=sampling_random_state)
     validation_df = validation_df.sample(frac=1, random_state=sampling_random_state)
 
+    if mode == 'test':
+        train_df = train_df.head(500)
+        test_df = test_df.head(100)
+        validation_df = validation_df.head(100)
     train_df['labels'] = encode(train_df['labels'].to_list())
     validation_df['labels'] = encode(validation_df['labels'].to_list())
 
@@ -35,8 +39,7 @@ def get_data_frames(file_path='data/readability'):
 
 # Only for testing purposes
 def get_test_data_frames():
-    train_df, test_df, validation_df = get_data_frames()
-    return train_df.head(500), test_df.head(100), validation_df.head(100)  # limit for testing
+    return get_data_frames(mode='test')
 
 
 def get_balanced_data_frames():
@@ -53,8 +56,8 @@ def get_balanced_data_frames():
     return limited_train_df, test_df, validation_df
 
 
-def get_categorised_data_frames():
-    return get_data_frames(file_path='data/readability/categorised')
+def get_categorised_data_frames(mode='default'):
+    return get_data_frames(file_path='data/readability/categorised',mode=mode)
 
 
 def get_training_arguments(args):
@@ -73,6 +76,8 @@ def run(args):
         train_df, test_df, validation_df = get_balanced_data_frames()
     elif args.run_mode == "categorised":
         train_df, test_df, validation_df = get_categorised_data_frames()
+    elif args.run_mode == "categorised_test":
+        train_df, test_df, validation_df = get_categorised_data_frames('test')
     else:
         train_df, test_df, validation_df = get_data_frames()
     training_arguments = get_training_arguments(args)
