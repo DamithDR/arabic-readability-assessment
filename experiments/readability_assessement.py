@@ -130,6 +130,12 @@ def run(args):
         f.write(f'Macro F1 mean: {np.mean(m_f1_lst)} | Macro F1 STD: {np.std(m_f1_lst)}\n')
         wandb.log({'macro_f1_mean': np.mean(m_f1_lst), 'macro_f1_std': np.std(m_f1_lst)})
 
+    wandb.alert(
+        title='Process finished',
+        text=f'Run Finished!',
+        level=wandb.AlertLevel.INFO,
+    )
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
