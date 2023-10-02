@@ -131,8 +131,8 @@ def run(args):
         wandb.log({'macro_f1_mean': np.mean(m_f1_lst), 'macro_f1_std': np.std(m_f1_lst)})
 
     wandb.alert(
-        title='Process finished',
-        text=f'Run Finished!',
+        title='Macro F1',
+        text=f'macro_f1_mean {np.mean(m_f1_lst)}',
         level=wandb.AlertLevel.INFO,
     )
 
