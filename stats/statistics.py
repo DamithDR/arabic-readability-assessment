@@ -8,24 +8,45 @@ import pandas as pd
 # print(groups)
 
 # Initial dataset
-data = pd.read_excel('data/readability/raw_data.xlsx')
+# data = pd.read_excel('data/readability/raw_data.xlsx')
+# groups = data.groupby('Grade').size()
+# print(groups)
+#
+# print("Stats for training set")
+# data = pd.read_csv('data/readability/train.csv', sep='\t')
+#
+# print(f'training samples {len(data)}')
+#
+# groups = data.groupby('Grade').size()
+# print(groups)
+#
+# print("Stats for test set")
+# data = pd.read_csv('data/readability/test.csv', sep='\t')
+# groups = data.groupby('Grade').size()
+# print(groups)
+#
+# print("Stats for validation set")
+# data = pd.read_csv('data/readability/validation.csv', sep='\t')
+# groups = data.groupby('Grade').size()
+# print(groups)
+
+print("Stats for all")
+data = pd.read_excel('data/readability/categorised/categorised_raw_data.xlsx')
 groups = data.groupby('Grade').size()
 print(groups)
 
+
 print("Stats for training set")
-data = pd.read_csv('data/readability/train.csv',sep='\t')
-
-print(f'training samples {len(data)}')
-
+data = pd.read_csv('data/readability/categorised/train.csv', sep='\t')
 groups = data.groupby('Grade').size()
 print(groups)
 
 print("Stats for test set")
-data = pd.read_csv('data/readability/test.csv',sep='\t')
+data = pd.read_csv('data/readability/categorised/test.csv', sep='\t')
 groups = data.groupby('Grade').size()
 print(groups)
 
 print("Stats for validation set")
-data = pd.read_csv('data/readability/validation.csv',sep='\t')
+data = pd.read_csv('data/readability/categorised/validation.csv', sep='\t')
 groups = data.groupby('Grade').size()
 print(groups)

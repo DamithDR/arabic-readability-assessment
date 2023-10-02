@@ -13,12 +13,12 @@ from utils.label_encoder import encode, decode
 from utils.result_eval import print_information
 
 
-def get_data_frames():
+def get_data_frames(file_path='data/readability'):
     sampling_random_state = 777
 
-    train_df = pd.read_csv('data/readability/train.csv', sep='\t')
-    test_df = pd.read_csv('data/readability/test.csv', sep='\t')
-    validation_df = pd.read_csv('data/readability/validation.csv', sep='\t')
+    train_df = pd.read_csv(f'{file_path}/train.csv', sep='\t')
+    test_df = pd.read_csv(f'{file_path}/test.csv', sep='\t')
+    validation_df = pd.read_csv(f'{file_path}/validation.csv', sep='\t')
 
     train_df.rename(columns={'Text': 'text', 'Grade': 'labels'}, inplace=True)
     test_df.rename(columns={'Text': 'text', 'Grade': 'labels'}, inplace=True)
@@ -36,19 +36,25 @@ def get_data_frames():
 # Only for testing purposes
 def get_test_data_frames():
     train_df, test_df, validation_df = get_data_frames()
-    return train_df.head(500), test_df.head(100), validation_df.head(100)
+    return train_df.head(500), test_df.head(100), validation_df.head(100)  # limit for testing
 
 
 def get_balanced_data_frames():
     train_df, test_df, validation_df = get_data_frames()
     # group by labels to limit the number
-    return train_df, test_df, validation_df
+    groups = train_df.groupby('labels')
+
+    limited_train_df = pd.DataFrame(columns=["Word", "labels", "Filename", "Text", "num_sent"])
+    for group in groups.groups.keys():
+        grade_df = groups.get_group(group)
+        limited_df = grade_df.head(500)
+        limited_train_df = pd.concat([limited_train_df, limited_df], axis=0)
+
+    return limited_train_df, test_df, validation_df
 
 
 def get_categorised_data_frames():
-    train_df, test_df, validation_df = get_data_frames()
-    # use categorised dataset and sample it frac = 1
-    return train_df, test_df, validation_df
+    return get_data_frames(file_path='data/readability/categorised')
 
 
 def get_training_arguments(args):
@@ -94,7 +100,7 @@ def run(args):
 
         # write stats
         if args.run_stat_file is None:
-            stat_file = f'run_statistics/stats_model_{m_name}_run_no_{i}'
+            stat_file = f'run_statistics/run_mode_{args.run_mode}_stats_model_{m_name}_run_no_{i}'
         else:
             stat_file = f'run_statistics/stats_{args.run_stat_file}'
 
@@ -128,7 +134,7 @@ if __name__ == '__main__':
     parser.add_argument('--cuda_device', required=False, type=int, default=0, help='cuda_device')
     parser.add_argument('--run_stat_file', required=False, help='run_stat_file')
     parser.add_argument('--n_fold', required=False, type=int, default=1, help='n_fold')
-    parser.add_argument('--run_mode', required=False, default=False, help='run_mode')
+    parser.add_argument('--run_mode', required=False, default="default", help='run_mode')
     args = parser.parse_args()
 
     run(args)
