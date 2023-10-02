@@ -57,7 +57,7 @@ def get_balanced_data_frames():
 
 
 def get_categorised_data_frames(mode='default'):
-    return get_data_frames(file_path='data/readability/categorised',mode=mode)
+    return get_data_frames(file_path='data/readability/categorised', mode=mode)
 
 
 def get_training_arguments(args):
@@ -67,8 +67,8 @@ def get_training_arguments(args):
     training_arguments.train_batch_size = args.train_batch_size
     training_arguments.weight_decay = args.weight_decay
 
-    training_arguments.wandb_kwargs={
-        "tags" : [args.run_mode]
+    training_arguments.wandb_kwargs = {
+        "tags": [args.run_mode]
     }
     return training_arguments
 
