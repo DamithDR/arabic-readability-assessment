@@ -129,7 +129,10 @@ def run(args):
 
         f.write(f'Macro F1 mean: {np.mean(m_f1_lst)} | Macro F1 STD: {np.std(m_f1_lst)}\n')
         wandb.log({'macro_f1_mean': np.mean(m_f1_lst), 'macro_f1_std': np.std(m_f1_lst)})
-
+        if args.save_predictions:
+            test_df.to_csv(f'run_statistics/run_mode_{args.run_mode}_predictions_model_{m_name}_run_no_{i}.csv',
+                           sep='\t',
+                           index=False)
     wandb.alert(
         title='Macro F1',
         text=f'run_type : {args.run_mode} | macro_f1_mean {np.mean(m_f1_lst)}',
@@ -150,6 +153,7 @@ if __name__ == '__main__':
     parser.add_argument('--run_stat_file', required=False, help='run_stat_file')
     parser.add_argument('--n_fold', required=False, type=int, default=1, help='n_fold')
     parser.add_argument('--run_mode', required=False, default="default", help='run_mode')
+    parser.add_argument('--save_predictions', required=False, type=bool, default=False, help='save_predictions')
     args = parser.parse_args()
 
     run(args)
