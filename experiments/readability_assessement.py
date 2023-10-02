@@ -66,6 +66,10 @@ def get_training_arguments(args):
     training_arguments.num_train_epochs = args.num_train_epochs
     training_arguments.train_batch_size = args.train_batch_size
     training_arguments.weight_decay = args.weight_decay
+
+    training_arguments.wandb_kwargs={
+        "tags" : [args.run_mode]
+    }
     return training_arguments
 
 
