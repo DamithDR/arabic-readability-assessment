@@ -135,7 +135,7 @@ def run(args):
                            index=False)
     wandb.alert(
         title='Macro F1',
-        text=f'run_type : {args.run_mode} | macro_f1_mean {np.mean(m_f1_lst)}',
+        text=f'run_type : {args.run_mode} | model name : {args.model_name} | macro_f1_mean {np.mean(m_f1_lst)}',
         level=wandb.AlertLevel.INFO,
     )
 
