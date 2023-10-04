@@ -13,7 +13,7 @@ from utils.label_encoder import encode, decode
 from utils.result_eval import print_information
 
 
-def get_data_frames(file_path='data/readability', mode='default'):
+def get_data_frames(file_path='data/readability', mode='default', append_column=None):
     sampling_random_state = 777
 
     train_df = pd.read_csv(f'{file_path}/train.csv', sep='\t')
@@ -27,6 +27,11 @@ def get_data_frames(file_path='data/readability', mode='default'):
     test_df = test_df.sample(frac=1, random_state=sampling_random_state)
     validation_df = validation_df.sample(frac=1, random_state=sampling_random_state)
 
+    if append_column:
+        train_df['text'] = train_df[append_column] + " : " + train_df['text']
+        test_df['text'] = test_df[append_column] + " : " + test_df['text']
+        validation_df['text'] = validation_df[append_column] + " : " + validation_df['text']
+
     if mode == 'test':
         train_df = train_df.head(500)
         test_df = test_df.head(100)
@@ -35,11 +40,6 @@ def get_data_frames(file_path='data/readability', mode='default'):
     validation_df['labels'] = encode(validation_df['labels'].to_list())
 
     return train_df, test_df, validation_df
-
-
-# Only for testing purposes
-def get_test_data_frames():
-    return get_data_frames(mode='test')
 
 
 def get_balanced_data_frames():
@@ -54,10 +54,6 @@ def get_balanced_data_frames():
         limited_train_df = pd.concat([limited_train_df, limited_df], axis=0)
 
     return limited_train_df, test_df, validation_df
-
-
-def get_categorised_data_frames(mode='default'):
-    return get_data_frames(file_path='data/readability/categorised', mode=mode)
 
 
 def get_training_arguments(args):
@@ -75,13 +71,18 @@ def get_training_arguments(args):
 
 def run(args):
     if args.run_mode == "test":
-        train_df, test_df, validation_df = get_test_data_frames()
+        train_df, test_df, validation_df = get_data_frames(mode='test')
     elif args.run_mode == "balanced":
         train_df, test_df, validation_df = get_balanced_data_frames()
     elif args.run_mode == "categorised":
-        train_df, test_df, validation_df = get_categorised_data_frames()
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised')
     elif args.run_mode == "categorised_test":
-        train_df, test_df, validation_df = get_categorised_data_frames('test')
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised', mode='test')
+    elif args.run_mode == "append_word":
+        train_df, test_df, validation_df = get_data_frames(append_column="Word")
+    elif args.run_mode == "append_word_categorised":
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised',
+                                                           append_column="Word")
     else:
         train_df, test_df, validation_df = get_data_frames()
     training_arguments = get_training_arguments(args)
@@ -154,6 +155,7 @@ if __name__ == '__main__':
     parser.add_argument('--n_fold', required=False, type=int, default=1, help='n_fold')
     parser.add_argument('--run_mode', required=False, default="default", help='run_mode')
     parser.add_argument('--save_predictions', required=False, type=bool, default=False, help='save_predictions')
+    parser.add_argument('--append_column', required=False, type=str, default=None, help='append_column')
     args = parser.parse_args()
 
     run(args)
