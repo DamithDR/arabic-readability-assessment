@@ -79,10 +79,10 @@ def run(args):
     elif args.run_mode == "categorised_test":
         train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised', mode='test')
     elif args.run_mode == "append_word":
-        train_df, test_df, validation_df = get_data_frames(append_column="Word")
+        train_df, test_df, validation_df = get_data_frames(append_column=args.append_column)
     elif args.run_mode == "append_word_categorised":
         train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised',
-                                                           append_column="Word")
+                                                           append_column=args.append_column)
     else:
         train_df, test_df, validation_df = get_data_frames()
     training_arguments = get_training_arguments(args)
