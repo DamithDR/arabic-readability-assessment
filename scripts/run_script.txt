@@ -10,3 +10,6 @@ python -m experiments.readability_assessement --model_name xlm-roberta-base --mo
 python -m experiments.readability_assessement --model_name xlm-roberta-base --model_type xlmroberta --num_train_epochs 4 --run_mode append_word --n_fold 5 --cuda_device 1 --append_column Word
 
 python -m experiments.readability_assessement --model_name CAMeL-Lab/bert-base-arabic-camelbert-mix --model_type bert --num_train_epochs 4 --run_mode append_filename --n_fold 5 --cuda_device 1 --append_column Arabic_Filename
+
+
+python -m experiments.readability_assessement --model_name CAMeL-Lab/bert-base-arabic-camelbert-mix --model_type bert --num_train_epochs 4 --run_mode append_filename --n_fold 5 --append_column word_file
