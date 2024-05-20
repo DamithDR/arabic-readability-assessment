@@ -27,7 +27,12 @@ def get_data_frames(file_path='data/readability', mode='default', append_column=
     test_df = test_df.sample(frac=1, random_state=sampling_random_state)
     validation_df = validation_df.sample(frac=1, random_state=sampling_random_state)
 
-    if append_column:
+    if append_column == 'word_file_cat' or 'word_file':
+        train_df['text'] = train_df['Word'] + " : " + train_df['Filename'] + " : " + train_df['text']
+        test_df['text'] = test_df['Word'] + " : " + test_df['Filename'] + " : " + test_df['text']
+        validation_df['text'] = validation_df['Word'] + " : " + validation_df['Filename'] + " : " + validation_df[
+            'text']
+    elif append_column:
         train_df['text'] = train_df[append_column] + " : " + train_df['text']
         test_df['text'] = test_df[append_column] + " : " + test_df['text']
         validation_df['text'] = validation_df[append_column] + " : " + validation_df['text']
@@ -88,6 +93,12 @@ def run(args):
                                                            append_column=args.append_column)
     elif args.run_mode == "append_filename_categorised":
         train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised/extended',
+                                                           append_column=args.append_column)
+    elif args.run_mode == "word_file_cat":
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised/extended',
+                                                           append_column=args.append_column)
+    elif args.run_mode == "word_file":
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/extended',
                                                            append_column=args.append_column)
     else:
         train_df, test_df, validation_df = get_data_frames()
