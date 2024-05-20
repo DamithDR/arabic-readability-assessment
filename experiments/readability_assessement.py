@@ -113,7 +113,6 @@ def run(args):
 
         model = ClassificationModel(
             model_name=args.model_name, model_type=args.model_type, num_labels=len(set(train_df['labels'].to_list())),
-            labels=list(set(train_df['labels'].to_list())),
             args=training_arguments,
             cuda_device=args.cuda_device
         )
