@@ -47,7 +47,6 @@ append_filename_categorised     : append subject to the categorised data experim
 ```
 
 ## Citation
-We will update the citation soon.
 ```bash
 @inproceedings{el-haj-etal-2024-dares,
     title = "{DARES}: Dataset for {A}rabic Readability Estimation of School Materials",
