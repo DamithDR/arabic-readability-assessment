@@ -1,7 +1,6 @@
 # Arabic Readability Assessment
 
-DARES: Dataset for Arabic Readability Estimation of
-School Materials - Transformers based evaluation of readability of school materials
+[DARES: Dataset for Arabic Readability Estimation of School Materials](https://aclanthology.org/2024.determit-1.10/) - Transformers based evaluation of readability of school materials
 
 ## Installation
 You first need to install PyTorch. The recommended PyTorch version is 2.2.1
@@ -50,5 +49,24 @@ append_filename_categorised     : append subject to the categorised data experim
 ## Citation
 We will update the citation soon.
 ```bash
-
+@inproceedings{el-haj-etal-2024-dares,
+    title = "{DARES}: Dataset for {A}rabic Readability Estimation of School Materials",
+    author = "El-Haj, Mo  and
+      Almujaiwel, Sultan  and
+      Premasiri, Damith  and
+      Ranasinghe, Tharindu  and
+      Mitkov, Ruslan",
+    editor = "Nunzio, Giorgio Maria Di  and
+      Vezzani, Federica  and
+      Ermakova, Liana  and
+      Azarbonyad, Hosein  and
+      Kamps, Jaap",
+    booktitle = "Proceedings of the Workshop on DeTermIt! Evaluating Text Difficulty in a Multilingual Context @ LREC-COLING 2024",
+    month = may,
+    year = "2024",
+    address = "Torino, Italia",
+    publisher = "ELRA and ICCL",
+    url = "https://aclanthology.org/2024.determit-1.10",
+    pages = "103--113",
+}
 ```
