@@ -28,4 +28,4 @@ def split_data(path, filename):
 
 
 if __name__ == '__main__':
-    split_data('data/readability/categorised', 'categorised_raw_data.xlsx')
+    split_data('data/readability/raw', 'categorised_raw_data.xlsx')

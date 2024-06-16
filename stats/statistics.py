@@ -31,29 +31,29 @@ import pandas as pd
 # print(groups)
 
 # print("Stats for all")
-# data = pd.read_excel('data/readability/categorised/categorised_raw_data.xlsx')
+# data = pd.read_excel('data/readability/raw/categorised_raw_data.xlsx')
 # groups = data.groupby('Grade').size()
 # print(groups)
 #
 #
 # print("Stats for training set")
-# data = pd.read_csv('data/readability/categorised/train.csv', sep='\t')
+# data = pd.read_csv('data/readability/raw/train.csv', sep='\t')
 # groups = data.groupby('Grade').size()
 # print(groups)
 #
 # print("Stats for test set")
-# data = pd.read_csv('data/readability/categorised/test.csv', sep='\t')
+# data = pd.read_csv('data/readability/raw/test.csv', sep='\t')
 # groups = data.groupby('Grade').size()
 # print(groups)
 #
 # print("Stats for validation set")
-# data = pd.read_csv('data/readability/categorised/validation.csv', sep='\t')
+# data = pd.read_csv('data/readability/raw/validation.csv', sep='\t')
 # groups = data.groupby('Grade').size()
 # print(groups)
 
 # Initial dataset
 data = pd.read_csv('data/readability/extended/train.csv',sep='\t')
-# data = pd.read_csv('data/readability/categorised/extended/test.csv',sep='\t')
+# data = pd.read_csv('data/readability/raw/extended/test.csv',sep='\t')
 groups = data.groupby('Arabic_Filename')
 
 for key in groups.groups.keys():

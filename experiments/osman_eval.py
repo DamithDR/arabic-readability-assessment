@@ -5,7 +5,7 @@ with open('data/osman/coarse_pred.txt', 'r') as c_preds:
     preds_c = c_preds.readlines()
     preds_c = [pred.replace('\n', '') for pred in preds_c]
 
-_, test_df_cat, _ = get_data_frames(file_path='data/readability/categorised/extended',
+_, test_df_cat, _ = get_data_frames(file_path='data/readability/raw/extended',
                                     append_column='word_file_cat')
 test_df_cat['predictions'] = preds_c
 

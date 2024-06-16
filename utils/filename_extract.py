@@ -64,12 +64,12 @@ def append_column(read_file, write_file):
 
 if __name__ == '__main__':
     append_column(read_file='data/readability/train.csv', write_file='data/readability/extended/train.csv')
-    append_column(read_file='data/readability/categorised/train.csv',
-                  write_file='data/readability/categorised/extended/train.csv')
+    append_column(read_file='data/readability/raw/train.csv',
+                  write_file='data/readability/raw/extended/train.csv')
     append_column(read_file='data/readability/test.csv', write_file='data/readability/extended/test.csv')
-    append_column(read_file='data/readability/categorised/test.csv',
-                  write_file='data/readability/categorised/extended/test.csv')
+    append_column(read_file='data/readability/raw/test.csv',
+                  write_file='data/readability/raw/extended/test.csv')
     append_column(read_file='data/readability/validation.csv', write_file='data/readability/extended/validation.csv')
-    append_column(read_file='data/readability/categorised/validation.csv',
-                  write_file='data/readability/categorised/extended/validation.csv')
+    append_column(read_file='data/readability/raw/validation.csv',
+                  write_file='data/readability/raw/extended/validation.csv')
 

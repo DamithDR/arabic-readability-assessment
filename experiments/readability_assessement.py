@@ -79,26 +79,26 @@ def run(args):
         train_df, test_df, validation_df = get_data_frames(mode='test')
     elif args.run_mode == "balanced":
         train_df, test_df, validation_df = get_balanced_data_frames()
-    elif args.run_mode == "categorised":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised')
+    elif args.run_mode == "raw":
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/coarse-grained')
     elif args.run_mode == "categorised_test":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised', mode='test')
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/coarse-grained', mode='test')
     elif args.run_mode == "append_word":
         train_df, test_df, validation_df = get_data_frames(append_column=args.append_column)
     elif args.run_mode == "append_word_categorised":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised',
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/coarse-grained',
                                                            append_column=args.append_column)
     elif args.run_mode == "append_filename":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/extended',
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/fine-grained',
                                                            append_column=args.append_column)
     elif args.run_mode == "append_filename_categorised":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised/extended',
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/coarse-grained',
                                                            append_column=args.append_column)
     elif args.run_mode == "word_file_cat":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/categorised/extended',
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/coarse-grained',
                                                            append_column=args.append_column)
     elif args.run_mode == "word_file":
-        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/extended',
+        train_df, test_df, validation_df = get_data_frames(file_path='data/readability/fine-grained',
                                                            append_column=args.append_column)
     else:
         train_df, test_df, validation_df = get_data_frames()
