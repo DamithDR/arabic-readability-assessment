@@ -20,7 +20,7 @@ def get_data_frames(file_path='data/readability/data_V2.0', mode='default', exp_
     test_df = pd.read_csv(f'{file_path}/test.csv', sep='\t')
     validation_df = pd.read_csv(f'{file_path}/validation.csv', sep='\t')
 
-    if exp_type == '':
+    if exp_type == 'C':
         train_df.rename(columns={'Text': 'text', 'Coarse-grained': 'labels'}, inplace=True)
         test_df.rename(columns={'Text': 'text', 'Coarse-grained': 'labels'}, inplace=True)
         validation_df.rename(columns={'Text': 'text', 'Coarse-grained': 'labels'}, inplace=True)
