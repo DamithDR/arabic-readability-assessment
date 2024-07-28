@@ -1,4 +1,4 @@
-python -m experiments.readability_assessement --model_name aubmindlab/bert-base-arabertv2 --model_type bert
+python -m experiments.readability_assessement --model_name aubmindlab/bert-bse-arabertv2 --model_type bert
 
 python -m experiments.readability_assessement --model_name CAMeL-Lab/bert-base-arabic-camelbert-mix --model_type bert --num_train_epochs 4 --run_mode categorised --n_fold 5
 
