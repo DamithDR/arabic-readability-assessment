@@ -16,10 +16,6 @@ module add cuda/12.0
 source activate /storage/hpc/41/dolamull/conda_envs/llm_env
 export HF_HOME=/scratch/hpc/41/dolamull/hf_cache
 
-source <(grep -v '^#' .env | xargs -d '\n')
-
-huggingface-cli login --token $HUGGINGFACE_TOKEN
-
 python -m experiments.readability_assessement_V2 --model_name $1 --model_type $2 --num_train_epochs 4 --run_mode raw --n_fold 3
 python -m experiments.readability_assessement_V2 --model_name $1 --model_type $2 --num_train_epochs 4 --run_mode raw_cat --n_fold 3
 python -m experiments.readability_assessement_V2 --model_name $1 --model_type $2 --num_train_epochs 4 --run_mode append_word --n_fold 3 --append_column Word
