@@ -6,6 +6,8 @@ def get_arguments():
     model_args.use_multiprocessing = False
     model_args.use_multiprocessing_for_evaluation = False
     model_args.save_best_model = False
+    model_args.save_eval_checkpoints = False
+    model_args.save_model_every_epoch = False
     model_args.evaluate_during_training = True
     model_args.evaluate_during_training_steps = 150
     model_args.evaluate_during_training_verbose = True
