@@ -13,7 +13,7 @@ def get_arguments():
     model_args.evaluate_during_training_verbose = True
     model_args.overwrite_output_dir = True
     model_args.logging_steps = 150
-    model_args.save_steps = 150
+    # model_args.save_steps = 150
     model_args.max_seq_length = 512
     model_args.wandb_project = 'arabic-readability-assessment'
     return model_args
