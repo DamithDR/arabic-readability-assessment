@@ -15,10 +15,15 @@ pip install -r requirements.txt
 ```
 
 ## Experiment Results
-You can easily run experiments using following command and altering the parameters as you wish
+You can easily run experiments on DARES1.0 using following command and altering the parameters as you wish
 
 ```bash
-python -m experiments.readability_assessement --model_name CAMeL-Lab/bert-base-arabic-camelbert-mix --model_type bert --num_train_epochs 4 --run_mode append_filename --n_fold 5 --cuda_device 1 --append_column Arabic_Filename
+python -m experiments.readability_assessement --model_name CAMeL-Lab/bert-base-arabic-camelbert-mix --model_type bert --num_train_epochs 4 --run_mode append_filename --n_fold 5 --cuda_device 0 --append_column Arabic_Filename
+```
+
+Similarly you can run experiments on DARES2.0 using following command and altering the parameters as you wish
+```bash
+python -m experiments.readability_assessement_V2 --model_name CAMeL-Lab/bert-base-arabic-camelbert-mix --model_type bert --num_train_epochs 4 --run_mode append_filename --n_fold 5 --cuda_device 0 --append_column Arabic_Filename
 ```
 
 ## Parameters
