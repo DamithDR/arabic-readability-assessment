@@ -51,7 +51,7 @@ append_filename                 : append subject to the text
 append_filename_categorised     : append subject to the categorised data experiment
 ```
 
-## Citation
+## Citation DARES1.0
 ```bash
 @inproceedings{el-haj-etal-2024-dares,
     title = "{DARES}: Dataset for {A}rabic Readability Estimation of School Materials",
@@ -74,3 +74,6 @@ append_filename_categorised     : append subject to the categorised data experim
     pages = "103--113",
 }
 ```
+
+## Citation DARES2.0
+Coming soon
