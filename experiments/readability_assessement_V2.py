@@ -173,7 +173,7 @@ if __name__ == '__main__':
         description='''evaluates models arabic readability assessment''')
     parser.add_argument('--model_name', required=True, help='model_name')
     parser.add_argument('--model_type', required=True, help='model_type')
-    parser.add_argument('--lr', required=False, type=float, default=0.00005, help='learning_rate')
+    parser.add_argument('--lr', required=False, type=float, default=0.00001, help='learning_rate')
     parser.add_argument('--num_train_epochs', required=False, type=int, default=1, help='No of epochs')
     parser.add_argument('--train_batch_size', required=False, type=int, default=2, help='train_batch_size')
     parser.add_argument('--weight_decay', required=False, type=float, default=0, help='weight_decay')
