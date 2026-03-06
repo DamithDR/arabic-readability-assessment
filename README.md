@@ -75,5 +75,17 @@ append_filename_categorised     : append subject to the categorised data experim
 }
 ```
 
-## Citation DARES2.0
-Coming soon
+## Citation DARES1.0
+```bash
+@article{almujaiwel2025complex,
+  title={Complex Concept-Based Readability Estimation from Arabic Curriculum},
+  author={Almujaiwel, Sultan and Premasiri, Damith and Ranasinghe, Tharindu and El-Haj, Mo and Mitkov, Ruslan},
+  journal={ACM Transactions on Asian and Low-Resource Language Information Processing},
+  volume={24},
+  number={11},
+  pages={1--21},
+  year={2025},
+  publisher={ACM},
+  doi={10.1145/3770070}
+}
+```
